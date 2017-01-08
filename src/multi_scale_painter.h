@@ -14,14 +14,14 @@ public:
     MultiScalePainter(Quadruplet &q, Logger &logger) : m_q(q), m_logger(logger) {}
 
     void paint() {
-        auto pyramid = m_q.get_gaussian_pyramid();
+        auto pyramid = m_q.get_gaussian_pyramid(6);
 
         for (auto it = pyramid.rbegin(); it != pyramid.rend(); it++) {
             SingleScalePainter painter(*it, m_logger);
             if (it == pyramid.rbegin()) {
-                painter.iterate({0, 0.5, 0.5, 0.5, 0.5});
+                painter.iterate({0, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f});
             } else {
-                painter.iterate({0.5, 0.5, 0.5, 0.5, 0.5});
+                painter.iterate({0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f});
             }
 
             auto jt = it + 1;
